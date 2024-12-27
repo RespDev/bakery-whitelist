@@ -1,11 +1,10 @@
--- Import MarcSync with the correct path and initialize it with an example token
 local MarcSync = require(game:GetService("ServerScriptService"):WaitForChild("MarcSync")["MarcSyncv1.1"])
+
+-- Config
+local toolName = "SpecialTool"
 local ms = MarcSync.new("TOKEN HERE")
 
--- Define the tool name you want to give to the player if they have access
-local toolName = "SpecialTool"
-
--- Function to give the tool to the player if they have authorized access
+-- Give Tool
 local function giveToolIfAuthorized(player)
 	-- Fetch data from the bakeryAccess collection for this player
 	local bakeryAccessCollection = ms:getCollection("bakeryAccess")
@@ -30,7 +29,7 @@ local function giveToolIfAuthorized(player)
 	end
 end
 
--- Event listener for when a player joins the game
+-- Join
 game.Players.PlayerAdded:Connect(function(player)
 	giveToolIfAuthorized(player)
 	
